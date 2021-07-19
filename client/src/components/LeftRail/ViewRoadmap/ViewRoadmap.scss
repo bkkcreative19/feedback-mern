@@ -1,0 +1,65 @@
+.view-roadmap {
+  box-shadow: 0 0 0.5rem rgba(128, 128, 128, 0.288);
+  border-radius: 0.7rem;
+  padding: 1.4rem;
+
+  & .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      color: #3a4374;
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+
+    & a {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4661e6;
+      text-decoration: underline;
+    }
+  }
+
+  & .list {
+    margin-top: 2rem;
+    &__item {
+      display: flex;
+      align-items: center;
+
+      &:not(:first-child) {
+        margin-top: 0.7rem;
+      }
+
+      & .dot {
+        background: red;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+
+        &.orange {
+          background: #f49f85;
+        }
+        &.purple {
+          background: #ad1fea;
+        }
+        &.blue {
+          background: #62bcfa;
+        }
+      }
+
+      & p {
+        margin-left: 1.2rem;
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+      & span {
+        margin-left: auto;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #647196;
+      }
+    }
+  }
+}

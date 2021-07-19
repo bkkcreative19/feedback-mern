@@ -1,0 +1,49 @@
+.suggestion-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 825px;
+}
+
+.top-bar {
+  background: #373f68;
+  display: flex;
+  padding: 1.5rem;
+  align-items: center;
+  color: #fff;
+
+  & a {
+    margin-left: auto;
+  }
+
+  & h4 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-left: 1.8rem;
+    margin-right: 5rem;
+  }
+
+  & p {
+    font-size: 1.2rem;
+
+    & span {
+      cursor: pointer;
+    }
+
+    & img {
+      margin-left: 0.4rem;
+    }
+  }
+
+  & button {
+    margin-left: auto;
+    background: #ad1fea;
+    color: #fff;
+    padding: 1.3rem 1.7rem;
+    border-radius: 0.8rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+}

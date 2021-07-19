@@ -1,0 +1,100 @@
+.add-feedback-container {
+  width: 540px;
+  margin: 0 auto;
+  margin-top: 6rem;
+
+  & .go-back {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    & i {
+      color: #4661e6;
+      margin-top: 0.2rem;
+    }
+
+    & span {
+      font-size: 1.4rem;
+      color: #647196;
+      font-weight: 700;
+      margin-left: 0.8rem;
+    }
+  }
+
+  & .add-feedback {
+    background: #fff;
+    margin-top: 5rem;
+    padding: 2rem 4rem;
+    border-radius: 0.6rem;
+    position: relative;
+
+    & .icon {
+      position: absolute;
+      top: -3rem;
+    }
+
+    & h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3a4374;
+      margin: 3rem 0;
+    }
+
+    & .category,
+    & .detail {
+      margin-top: 2rem;
+    }
+
+    & div p {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #3a4374;
+    }
+    & div p:last-child {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #647196;
+    }
+    & div input {
+      width: 100%;
+      border: none;
+      background: #f7f8fd;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1.6rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    & .detail input {
+      padding: 3rem 1rem;
+    }
+
+    & .buttons {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: flex-end;
+
+      & button {
+        padding: 1.2rem 2rem;
+        border-radius: 0.6rem;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      & button:first-child {
+        margin-right: 1.5rem;
+        background: #3a4374;
+      }
+      & button:last-child {
+        margin-right: 1.5rem;
+        background: #ad1fea;
+      }
+    }
+  }
+}

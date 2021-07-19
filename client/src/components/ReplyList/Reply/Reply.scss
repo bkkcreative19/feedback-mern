@@ -1,0 +1,50 @@
+.reply {
+  margin-top: 2rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #8c92b342;
+    padding-bottom: 3rem;
+  }
+
+  & .head {
+    display: flex;
+    align-items: center;
+
+    & .user {
+      margin-left: 2.5rem;
+
+      & h3 {
+        color: #3a4374;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+      & p {
+        color: #647196;
+        font-size: 1.3rem;
+        font-weight: 400;
+      }
+    }
+
+    & span {
+      margin-left: auto;
+      color: #4661e6;
+      font-size: 1.3rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+
+  & img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+  }
+
+  & .content {
+    color: #647196;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 6.5rem;
+    margin-top: 1.8rem;
+  }
+}

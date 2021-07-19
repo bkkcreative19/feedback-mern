@@ -1,0 +1,31 @@
+.sort-by {
+  //   & p {
+  //     display: flex;
+  //     align-items: center;
+  //   }
+  position: relative;
+
+  & .drop-down {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #fff;
+    z-index: 1000;
+    top: 5rem;
+    box-shadow: 0 2rem 2rem rgba(128, 128, 128, 0.418);
+    left: 0;
+    width: 25rem;
+    border-radius: 0.6rem;
+
+    & div {
+      font-size: 1.4rem;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+      color: #647196;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #97979736;
+      }
+    }
+  }
+}

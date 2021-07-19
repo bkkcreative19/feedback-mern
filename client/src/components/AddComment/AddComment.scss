@@ -1,0 +1,52 @@
+.add-comment {
+  background: #fff;
+  border-radius: 0.6rem;
+  margin-top: 2rem;
+  padding: 2.5rem;
+
+  & h4 {
+    font-size: 1.8rem;
+    color: #3a4374;
+    font-weight: 700;
+  }
+
+  & input {
+    width: 100%;
+    padding: 2rem 2rem 4rem;
+    border: none;
+    background: #f7f8fd;
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #8c92b3;
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+  }
+
+  & .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & p {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #647196;
+    }
+
+    & button {
+      border-radius: 1rem;
+      padding: 1.2rem 2rem;
+      background: #ad1fea;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+  }
+}

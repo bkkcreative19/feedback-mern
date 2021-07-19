@@ -1,0 +1,45 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 730px;
+  margin: 0 auto;
+  padding: 5rem 0;
+
+  & .suggestion {
+    cursor: default;
+  }
+
+  & .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & div {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      & i {
+        color: #4661e6;
+        margin-top: 0.2rem;
+      }
+
+      & span {
+        font-size: 1.4rem;
+        color: #647196;
+        font-weight: 700;
+        margin-left: 0.8rem;
+      }
+    }
+
+    & button {
+      background: #4661e6;
+      color: #fff;
+      padding: 1.2rem 2.5rem;
+      border: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-radius: 0.7rem;
+      cursor: pointer;
+    }
+  }
+}

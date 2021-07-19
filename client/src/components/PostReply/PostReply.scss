@@ -1,0 +1,29 @@
+.post-reply {
+  // color: #647196;
+  // font-size: 1.5rem;
+  // font-weight: 400;
+  display: flex;
+  // width: 100%;
+  margin: 1.8rem 6.5rem;
+  // margin-top: 1.8rem;
+
+  & input {
+    width: 70%;
+    padding: 2.4rem;
+    border-radius: 0.7rem;
+    background: #f7f8fd;
+    border: 2px solid #4661e670;
+  }
+
+  & button {
+    align-self: flex-start;
+    padding: 1.2rem 1.7rem;
+    margin-left: 2rem;
+    background: #ad1fea;
+    color: #fff;
+    border: none;
+    border-radius: 0.7rem;
+    cursor: pointer;
+    font-weight: 700;
+  }
+}

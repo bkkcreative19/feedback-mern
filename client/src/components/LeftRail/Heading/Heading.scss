@@ -1,0 +1,21 @@
+.heading {
+  background: radial-gradient(#e84d70, #a337f6, #28a7ed);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 1.2rem 2rem;
+  border-radius: 0.7rem;
+
+  & h2 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  & h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    opacity: 0.75;
+  }
+  //   #A337F6
+  // #e84d70
+}
