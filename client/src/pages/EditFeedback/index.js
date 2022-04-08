@@ -1,46 +1,34 @@
-import axios from "axios";
 import { Select } from "components";
-import { Context } from "context/context";
 import { categoryOptions, updateOptions } from "helpers";
-import React, { useContext, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useState } from "react";
+import {
+  deleteFeedback,
+  updateFeedback,
+} from "../../redux/actions/feedbackActions";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 
 import Icon from "../../assets/starter-code/assets/shared/icon-edit-feedback.svg";
 import "./EditFeedback.scss";
 
 export const EditFeedback = () => {
-  const params = useParams();
+  const dispatch = useDispatch();
   const history = useHistory();
-  const { currentFeedback } = useContext(Context);
+  const location = useLocation();
+
+  const { state: currentFeedback } = location;
 
   const [title, setTitle] = useState(currentFeedback.title);
   const [category, setCategory] = useState("");
   const [updateStatus, setUpdateStatus] = useState("");
   const [detail, setDetail] = useState(currentFeedback.description);
 
-  // console.log(currentFeedback);
-
-  const editFeedback = async () => {
-    const obj = {
-      title,
-      category,
-      status: updateStatus,
-      description: detail,
-      upvotes: currentFeedback.upvotes,
-    };
-    const { data } = await axios.put(
-      `/api/feedbacks/${currentFeedback._id}`,
-      obj
-    );
-
-    history.goBack();
-  };
-
-  const deleteFeedback = async () => {
-    const { data } = await axios.delete(
-      `/api/feedbacks/${currentFeedback._id}`
-    );
-    history.push("/");
+  const obj = {
+    title,
+    category,
+    status: updateStatus,
+    description: detail,
+    upvotes: currentFeedback.upvotes,
   };
 
   return (
@@ -90,9 +78,21 @@ export const EditFeedback = () => {
           />
         </div>
         <div className="buttons">
-          <button onClick={deleteFeedback}>Delete</button>
+          <button
+            onClick={() =>
+              dispatch(deleteFeedback(currentFeedback.feedback_id))
+            }
+          >
+            Delete
+          </button>
           <button>Cancel</button>
-          <button onClick={editFeedback}>Edit Feedback</button>
+          <button
+            onClick={() =>
+              dispatch(updateFeedback(currentFeedback.feedback_id, obj))
+            }
+          >
+            Edit Feedback
+          </button>
         </div>
         <img src={Icon} alt="" className="icon" />
       </div>

@@ -1,28 +1,37 @@
 import { Context } from "context/context";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/actions/userActions";
 import { useHistory } from "react-router-dom";
 import "./Login.scss";
 
 export const Login = () => {
   const history = useHistory();
-  const { login } = useContext(Context);
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  // const { login } = useContext(Context);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState(null);
 
+  const userLogin = useSelector((state) => state.userLogin);
+  console.log(userLogin);
+  const { loading, error, userInfo } = userLogin;
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    const obj = {
-      email,
-      password,
-    };
-
     try {
-      await login(obj, history);
+      dispatch(login(username, password));
     } catch (err) {
       // setErrors(err);
     }
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
+
   return (
     <div className="login">
       <div className="login__container">
@@ -40,12 +49,12 @@ export const Login = () => {
               {errors}
               <input
                 type="text"
-                placeholder="Email Address"
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
               />
               <input
                 type="password"
-                placeholder="Email Password"
+                placeholder=" Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button>Login</button>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Suggestion.scss";
 
 import upArrow from "../../../assets/starter-code/assets/shared/icon-arrow-up.svg";
 
 export const Suggestion = ({ feedback }) => {
+  useEffect(() => {}, []);
   return (
     <div className="suggestion">
       <div className="upvotes">

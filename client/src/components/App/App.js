@@ -9,19 +9,19 @@ import {
   Roadmap,
   Suggestions,
 } from "pages";
+import { useDispatch, useSelector } from "react-redux";
 
 export const App = () => {
   const history = useHistory();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
 
   return (
     <>
       <Switch>
         <Route exact path="/">
-          {localStorage.getItem("auth-token") ? (
-            <Suggestions />
-          ) : (
-            history.push("/login")
-          )}
+          {!userInfo ? <Redirect to="/login" /> : <Suggestions />}
         </Route>
         <Route exact path="/details/:id">
           <FeedbackDetails />
@@ -36,7 +36,7 @@ export const App = () => {
           <Roadmap />
         </Route>
         <Route path="/login">
-          {localStorage.getItem("auth-token") ? <Redirect to="/" /> : <Login />}
+          <Login />
         </Route>
       </Switch>
     </>

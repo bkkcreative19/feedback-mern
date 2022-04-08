@@ -1,9 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./PostReply.scss";
 
 export const PostReply = ({ commentId, replies, setReplies, setIsOpen }) => {
   const [reply, setReply] = useState("");
+  const params = useParams();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const postReply = async () => {
     const obj = {
@@ -12,7 +17,7 @@ export const PostReply = ({ commentId, replies, setReplies, setIsOpen }) => {
 
     const options = {
       headers: {
-        "x-auth-token": JSON.parse(localStorage.getItem("auth-token")),
+        "x-auth-token": userInfo.accessToken,
       },
     };
     const { data } = await axios.post(

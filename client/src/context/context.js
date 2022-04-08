@@ -13,12 +13,17 @@ const MyContext = ({ children }) => {
   const [currentFeedback, setCurrentFeedback] = useState({});
 
   const login = async (obj, history) => {
-    const { data } = await axios.post("/api/users/login", obj, {
-      headers: { "Content-Type": "application/json" },
-    });
-    localStorage.setItem("auth-token", JSON.stringify(data.token));
+    const { data } = await axios.post(
+      "http://localhost:4000/api/auth/signin",
+      obj,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(data);
+    localStorage.setItem("auth-token", JSON.stringify(data.accessToken));
     setUser(data);
-    history.push(ROUTES.HOME);
+    history.push("/");
   };
 
   const logout = () => {
