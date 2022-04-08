@@ -1,31 +1,34 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { LeftRail, SuggestionList } from "components";
+import { useDispatch, useSelector } from "react-redux";
+import { listFeedbacks } from "../../redux/actions/feedbackActions";
 
 import "./Suggestions.scss";
-import axios from "axios";
-import { Context } from "context/context";
 
 export const Suggestions = () => {
-  const {
-    setFeedbacks,
-    feedbacks,
-    fetchSuggestions,
-    filteredFeedbacks,
-    selected,
-  } = useContext(Context);
+  const dispatch = useDispatch();
+
+  const feedbackList = useSelector((state) => state.feedbackList);
+
+  const { feedbacks } = feedbackList;
+
+  const filtered = useSelector((state) => state.filtered);
+  const selectedInput = useSelector((state) => state.selectedInput);
+  const { selected } = selectedInput;
+
+  const { filtered: filteredList } = filtered;
 
   useEffect(() => {
-    fetchSuggestions();
-  }, []);
+    dispatch(listFeedbacks());
+  }, [dispatch]);
 
   return (
     <div className="suggestion-page">
-      <LeftRail setFeedbacks={setFeedbacks} feedbacks={feedbacks} />
-      {/* <SuggestionList feedbacks={feedbacks} /> */}
-      {selected === "all" ? (
-        <SuggestionList feedbacks={feedbacks} />
+      <LeftRail feedbacks={feedbacks} />
+      {selected !== "all" ? (
+        <SuggestionList feedbacks={filteredList} />
       ) : (
-        <SuggestionList feedbacks={filteredFeedbacks} />
+        <SuggestionList feedbacks={feedbacks} />
       )}
     </div>
   );

@@ -34,8 +34,6 @@ export const AddFeedback = () => {
     setCategory("");
     setDetail("");
     history.push("/");
-
-    console.log(data);
   };
 
   return (

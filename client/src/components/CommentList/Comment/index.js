@@ -1,31 +1,18 @@
-import axios from "axios";
 import { ReplyList } from "components";
 import { PostReply } from "components";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getReplies } from "../../../redux/actions/replyActions";
 import React, { useEffect, useState } from "react";
 
 import "./Comment.scss";
 
 export const Comment = ({ comment }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [replies, setReplies] = useState(null);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const options = {
-      headers: {
-        "x-auth-token": JSON.parse(localStorage.getItem("auth-token")),
-      },
-    };
-    const fetchReplies = async () => {
-      const { data } = await axios.get(
-        `http://localhost:4000/api/replies/${comment._id}`,
-        options
-      );
-      setReplies(data);
-    };
+  const replyList = useSelector((state) => state.replyList);
 
-    fetchReplies();
-  }, []);
+  const { loading, error, replies } = replyList;
 
   return (
     <div className="comment">
@@ -40,13 +27,14 @@ export const Comment = ({ comment }) => {
       <p className="content">{comment.content}</p>
       {isOpen && (
         <PostReply
-          setReplies={setReplies}
+          // setReplies={setReplies}
           replies={replies}
-          commentId={comment._id}
+          commentId={comment.comment_id}
           setIsOpen={setIsOpen}
         />
       )}
-      {replies && <ReplyList replies={replies} />}
+
+      <ReplyList commentId={comment.comment_id} />
     </div>
   );
 };

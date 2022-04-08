@@ -1,4 +1,5 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
+
 const auth = (req, res, next) => {
   try {
     const token = req.header("x-auth-token");
@@ -8,7 +9,7 @@ const auth = (req, res, next) => {
         .status(401)
         .json({ msg: "No authentication token, authorization denied." });
 
-    const verified = jwt.verify(token, "adnbfoesrte24fds");
+    const verified = jwt.verify(token, process.env.SECRET);
     if (!verified)
       return res
         .status(401)
@@ -21,4 +22,4 @@ const auth = (req, res, next) => {
   }
 };
 
-export { auth };
+module.exports = auth;

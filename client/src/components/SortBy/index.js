@@ -1,19 +1,25 @@
 import React, { useContext, useState } from "react";
 import "./SortBy.scss";
 import { sortOptions } from "helpers";
-import { Context } from "context/context";
+import { useDispatch, useSelector } from "react-redux";
+import { sortFeedbacks } from "../../redux/actions/feedbackActions";
 
 export const SortBy = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { sortFeedbacks, sortSelected, setSortSelected } = useContext(Context);
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState("most upvotes");
+  const filtered = useSelector((state) => state.filtered);
+
+  const { filtered: filteredList } = filtered;
+  const feedbackList = useSelector((state) => state.feedbackList);
+  const { loading, error, feedbacks } = feedbackList;
 
   return (
     <div className="sort-by">
       <p>
         Sort By:{" "}
         <span>
-          {sortSelected}
+          {selected}
           {isOpen ? (
             <i
               onClick={() => setIsOpen(!isOpen)}
@@ -34,9 +40,11 @@ export const SortBy = () => {
             return (
               <div
                 onClick={(e) => {
-                  // setSortSelected(e.target.innerText);
+                  setSelected(e.target.innerText);
                   setIsOpen(false);
-                  sortFeedbacks(e.target.innerText);
+                  dispatch(
+                    sortFeedbacks(e.target.innerText, feedbacks, filteredList)
+                  );
                 }}
                 key={idx}
               >

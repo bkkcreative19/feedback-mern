@@ -1,37 +1,28 @@
-import axios from "axios";
 import { AddComment, CommentList } from "components";
 import { Suggestion } from "components/SuggestionList/Suggestion";
-import { Context } from "context/context";
-import { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { listFeedback } from "../../redux/actions/feedbackActions";
+import { useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 
 import "./FeedbackDetails.scss";
 
 export const FeedbackDetails = () => {
-  const [feedback, setFeedback] = useState({});
-  const [comments, setComments] = useState(null);
-  const { setCurrentFeedback } = useContext(Context);
   const params = useParams();
   const history = useHistory();
 
+  const dispatch = useDispatch();
+
+  const feedbackDetails = useSelector((state) => state.feedback);
+
+  const { loading: loadingFeedback, errorFeedback, feedback } = feedbackDetails;
+
+  const commentList = useSelector((state) => state.commentList);
+
+  const { loading: loadingComments, errorComments, comments } = commentList;
+
   useEffect(() => {
-    let mounted = true;
-    const fetchFeedback = async () => {
-      const { data } = await axios.get(
-        `http://localhost:4000/api/feedbacks/${params.id}`
-      );
-
-      const comments = await axios.get(
-        `http://localhost:4000/api/comments/${params.id}`
-      );
-
-      setComments(comments.data);
-      if (mounted) setFeedback(data);
-    };
-
-    fetchFeedback();
-
-    return () => (mounted = false);
+    dispatch(listFeedback(params.id));
   }, [params.id]);
   return (
     <div className="details">
@@ -42,16 +33,19 @@ export const FeedbackDetails = () => {
               <i className="fas fa-chevron-left"></i> <span>Go Back</span>
             </div>
             <Link
-              onClick={() => setCurrentFeedback(feedback)}
-              to={`/edit-feedback/${feedback.title}`}
+              // onClick={() => setCurrentFeedback(feedback)}
+              to={{
+                pathname: `/edit-feedback/${feedback.title}`,
+                state: feedback,
+              }}
             >
               <button>Edit Feedback</button>
             </Link>
           </div>
           {feedback && <Suggestion feedback={feedback} />}
-
-          {comments && <CommentList comments={comments} />}
-          <AddComment comments={comments} setComments={setComments} />
+          {/* {comments && <CommentList comments={comments} />} */}
+          <CommentList />
+          <AddComment comments={comments} />
         </>
       )}
     </div>
